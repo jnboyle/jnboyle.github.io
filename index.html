@@ -14,31 +14,34 @@
     <a href="#experience" class="tab">Experience</a>
     <a href="#projects" class="tab">Projects</a>
   </nav>
-
   <main>
 
     <!-- ABOUT -->
     <section id="about">
       <div class="hero-top">
         <div class="headshot-wrap">
-          <img src="headshot1.jpeg" alt="John Boyle" class="headshot">
+          <div class="headshot-circle">
+            <img src="headshot1.jpeg" alt="John Boyle" class="headshot">
+          </div>
           <p class="headshot-caption">awesome pic of me</p>
         </div>
         <div class="hero-text">
           <h1>John Boyle</h1>
           <p class="subtitle">MSCS student at NYU focused on data engineering, backend systems, and analytics.</p>
+          <div class="links">
+            <a href="resume.pdf" target="_blank">View Resume</a>
+            <a href="mailto:john.ng.boyle@gmail.com">Email Me</a>
+            <a href="https://www.linkedin.com/in/john-ng-boyle/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/jnboyle" target="_blank">GitHub</a>
+          </div>
         </div>
-      </div>
-      <div class="links">
-        <a href="resume.pdf" target="_blank">View Resume</a>
-        <a href="mailto:john.ng.boyle@gmail.com">Email Me</a>
-        <a href="https://www.linkedin.com/in/john-ng-boyle/" target="_blank">LinkedIn</a>
-        <a href="https://github.com/jnboyle" target="_blank">GitHub</a>
       </div>
       <p class="about-body">
         I'm a CS master's student with a background spanning industrial engineering, aerospace quality,
         and large-scale game development.
       </p>
+
+      <p class="hidden-note">why is it so dark in here..</p>
 
       <h2 class="subsection-heading">Education</h2>
       <div class="edu-item">
@@ -128,6 +131,14 @@
 
     </section>
 
+    <div class="fire-toggle-bar">
+      <span class="fire-toggle-label">a little dark in here, turn on the lights?</span>
+      <label class="fire-switch">
+        <input type="checkbox" id="fire-toggle">
+        <span class="fire-slider"></span>
+      </label>
+    </div>
+
     <!-- PROJECTS -->
     <section id="projects">
       <h2>Projects</h2>
@@ -207,6 +218,21 @@
         e.preventDefault();
         document.querySelector(tab.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
       });
+    });
+
+    // Fire toggle
+    const fireLabel = document.querySelector('.fire-toggle-label');
+    let fireEverOn = false;
+    document.getElementById('fire-toggle').addEventListener('change', function () {
+      document.body.classList.toggle('fire-mode', this.checked);
+      if (this.checked) {
+        fireEverOn = true;
+        fireLabel.textContent = 'OH GOD WHAT HAVE YOU DONE?? TURN IT OFF! TURN IT OFF!!!';
+        fireLabel.classList.add('flashing');
+      } else {
+        fireLabel.textContent = fireEverOn ? 'never do that again...' : 'a little dark in here, turn on the lights?';
+        fireLabel.classList.remove('flashing');
+      }
     });
 
     // Accordion

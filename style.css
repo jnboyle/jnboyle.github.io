@@ -13,6 +13,17 @@ body {
   background: #0f1117;
 }
 
+/* --- Hidden note --- */
+
+.hidden-note {
+  font-size: 12px;
+  color: rgba(180, 70, 10, 0.22);
+  text-align: center;
+  margin: 8px 0;
+  font-style: italic;
+  user-select: none;
+}
+
 /* --- Nav --- */
 
 .tab-nav {
@@ -24,7 +35,7 @@ body {
   display: flex;
   gap: 8px;
   padding: 14px 0;
-  margin-bottom: 70px;
+  margin-bottom: 32px;
 }
 
 .tab {
@@ -55,6 +66,47 @@ section {
   scroll-margin-top: 75px;
 }
 
+/* --- Fire animation --- */
+
+@keyframes fire-flicker {
+  0% {
+    color: #ff9500;
+    text-shadow:
+      0 0 6px #ff4500,
+      0 -5px 14px #ff6a00,
+      0 -10px 26px #ff9500,
+      0 -18px 42px #ffd000,
+      0 -26px 60px rgba(255, 160, 0, 0.35);
+  }
+  33% {
+    color: #ffbe00;
+    text-shadow:
+      0 0 9px #ff2200,
+      0 -6px 18px #ff4500,
+      0 -13px 32px #ff8c00,
+      0 -22px 52px #ffcc00,
+      0 -32px 72px rgba(255, 190, 0, 0.28);
+  }
+  66% {
+    color: #ff8c00;
+    text-shadow:
+      0 0 5px #ff4500,
+      0 -4px 12px #ff6a00,
+      0 -9px 22px #ffaa00,
+      0 -16px 36px #ffe000,
+      0 -23px 55px rgba(255, 200, 0, 0.3);
+  }
+  100% {
+    color: #ffa500;
+    text-shadow:
+      0 0 7px #ff3500,
+      0 -5px 16px #ff5500,
+      0 -11px 28px #ff9000,
+      0 -20px 46px #ffd500,
+      0 -28px 65px rgba(255, 170, 0, 0.32);
+  }
+}
+
 /* --- Headings --- */
 
 h1 {
@@ -63,7 +115,9 @@ h1 {
   margin-bottom: 12px;
   color: #f3f4f6;
   letter-spacing: -0.02em;
+  transition: color 0.3s ease;
 }
+
 
 h2 {
   font-size: 30px;
@@ -111,13 +165,24 @@ a:hover {
   gap: 8px;
 }
 
+.headshot-circle {
+  width: 165px;
+  height: 165px;
+  border-radius: 25%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+}
+
 .headshot {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: 60% 20%;
-  filter: grayscale(100%);
+  object-position: 75% 50%;
+  filter: grayscale(100%) brightness(1.25);
+  transform: scale(1.1);
+  transform-origin: 75% 50%;
+  display: block;
 }
 
 .headshot-caption {
@@ -130,7 +195,15 @@ a:hover {
 .hero-text {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 0;
+}
+
+.hero-text h1 {
+  margin-bottom: 2px;
+}
+
+.hero-text .subtitle {
+  margin-top: 0;
 }
 
 .subtitle {
@@ -370,6 +443,120 @@ footer p {
   margin: 4px 0;
   font-size: 14px;
   color: #4b5563;
+}
+
+.fire-toggle-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.fire-toggle-label {
+  font-size: 14px;
+  color: #6b7280;
+  font-style: italic;
+}
+
+@keyframes alarm-flash {
+  0%, 49%  { opacity: 1; color: #ff3300; }
+  50%, 100% { opacity: 0; color: #ff3300; }
+}
+
+.fire-toggle-label.flashing {
+  animation: alarm-flash 0.35s step-end infinite;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.fire-switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.fire-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.fire-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #2d3139;
+  border-radius: 28px;
+  transition: background 0.4s;
+}
+
+.fire-slider:before {
+  content: '';
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background: #9ca3af;
+  border-radius: 50%;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.fire-switch input:checked + .fire-slider {
+  background: linear-gradient(135deg, #c43a00, #ff7a00);
+}
+
+.fire-switch input:checked + .fire-slider:before {
+  transform: translateX(24px);
+  background: #ffe066;
+}
+
+/* --- Fire mode --- */
+
+body {
+  transition: background 1.2s ease;
+}
+
+body.fire-mode {
+  background: linear-gradient(180deg, #120400 0%, #6b1e00 40%, #cc4d00 75%, #ff7a1a 100%) fixed;
+}
+
+body.fire-mode h1 {
+  animation: fire-flicker 0.35s ease-in-out infinite alternate;
+}
+
+body.fire-mode h2 {
+  animation: fire-flicker 0.45s ease-in-out infinite alternate;
+  border-bottom-color: #7a3000;
+}
+
+body.fire-mode h3 {
+  animation: fire-flicker 0.55s ease-in-out infinite alternate;
+}
+
+body.fire-mode .tab-nav {
+  background: rgba(18, 4, 0, 0.92);
+  border-bottom-color: #7a3000;
+  transition: background 1.2s ease, border-bottom-color 1.2s ease;
+}
+
+body.fire-mode .accordion-item {
+  background: rgba(28, 8, 0, 0.65);
+  border-color: #7a3000;
+  transition: background 1.2s ease, border-color 1.2s ease;
+}
+
+body.fire-mode footer {
+  border-top-color: #7a3000;
+  transition: border-top-color 1.2s ease;
+}
+
+body.fire-mode .headshot {
+  filter: grayscale(50%) brightness(1.25);
+  transition: filter 1.2s ease;
 }
 
 /* --- Tags --- */
