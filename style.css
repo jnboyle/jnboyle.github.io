@@ -96,6 +96,23 @@ a:hover {
 
 /* --- About --- */
 
+.hero-top {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 0;
+}
+
+.headshot {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(100%);
+  flex-shrink: 0;
+}
+
 .subtitle {
   font-size: 20px;
   font-weight: 500;
