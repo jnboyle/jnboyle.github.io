@@ -55,7 +55,7 @@ section {
   scroll-margin-top: 75px;
 }
 
-/* --- About / Hero --- */
+/* --- Headings --- */
 
 h1 {
   font-size: 52px;
@@ -64,41 +64,6 @@ h1 {
   color: #f3f4f6;
   letter-spacing: -0.02em;
 }
-
-.subtitle {
-  font-size: 20px;
-  font-weight: 500;
-  color: #9ca3af;
-  max-width: 680px;
-  margin-bottom: 0;
-}
-
-.links {
-  margin-top: 28px;
-  margin-bottom: 36px;
-}
-
-.links a {
-  display: inline-block;
-  margin-right: 16px;
-  margin-bottom: 10px;
-}
-
-.about-body {
-  font-size: 17px;
-  color: #9ca3af;
-  max-width: 720px;
-  line-height: 1.75;
-  margin-bottom: 0;
-}
-
-/* --- Subsection headings (within About) --- */
-
-.subsection-heading {
-  margin-top: 52px;
-}
-
-/* --- Headings --- */
 
 h2 {
   font-size: 30px;
@@ -127,6 +92,39 @@ a {
 
 a:hover {
   color: #93c5fd;
+}
+
+/* --- About --- */
+
+.subtitle {
+  font-size: 20px;
+  font-weight: 500;
+  color: #9ca3af;
+  max-width: 680px;
+  margin-bottom: 0;
+}
+
+.links {
+  margin-top: 28px;
+  margin-bottom: 36px;
+}
+
+.links a {
+  display: inline-block;
+  margin-right: 16px;
+  margin-bottom: 10px;
+}
+
+.about-body {
+  font-size: 17px;
+  color: #9ca3af;
+  max-width: 720px;
+  line-height: 1.75;
+  margin-bottom: 0;
+}
+
+.subsection-heading {
+  margin-top: 52px;
 }
 
 /* --- Education --- */
@@ -196,37 +194,98 @@ a:hover {
   color: #9ca3af;
 }
 
-/* --- Experience --- */
+/* --- Accordion --- */
 
-.experience-item {
-  margin-bottom: 44px;
+.accordion-item {
+  border: 1px solid #2d3139;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  background: #1a1d27;
 }
 
-.experience-header {
+.accordion-header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 12px;
+  padding: 20px 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-family: inherit;
+  text-align: left;
 }
 
-.experience-org {
+.accordion-header:hover {
+  background: #1f2330;
+}
+
+.accordion-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.accordion-role {
   display: block;
-  font-size: 14px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+.accordion-org {
+  display: block;
+  font-size: 13px;
   font-weight: 500;
   color: #60a5fa;
   letter-spacing: 0.02em;
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
-.experience-date {
-  font-size: 14px;
+.accordion-date {
+  font-size: 13px;
   font-weight: 500;
   color: #6b7280;
   white-space: nowrap;
-  padding-top: 4px;
 }
+
+.accordion-chevron {
+  font-size: 22px;
+  color: #6b7280;
+  transition: transform 0.3s ease;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.accordion-header[aria-expanded="true"] .accordion-chevron {
+  transform: rotate(180deg);
+}
+
+.accordion-body {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+.accordion-body > * {
+  margin: 0 24px;
+}
+
+.accordion-body > *:first-child {
+  margin-top: 4px;
+}
+
+.accordion-body > *:last-child {
+  margin-bottom: 24px;
+}
+
+/* --- Lists inside accordion --- */
 
 ul {
   padding-left: 20px;
@@ -244,30 +303,25 @@ strong {
   font-weight: 600;
 }
 
-/* --- Projects --- */
+/* --- Project images --- */
 
-.project {
-  background: #1a1d27;
-  padding: 24px;
-  border: 1px solid #2d3139;
-  border-radius: 12px;
-  margin-bottom: 22px;
-}
-
-.project-header {
+.project-images {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-bottom: 18px;
 }
 
-.project-meta {
-  font-size: 14px;
-  font-weight: 500;
-  color: #6b7280;
+.project-img {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
 }
+
+/* --- Tags --- */
 
 .tags {
   color: #6b7280;
