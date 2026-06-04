@@ -8,8 +8,8 @@ body {
   margin: 0 auto;
   padding: 40px 20px;
   line-height: 1.6;
-  color: #222;
-  background: #fafafa;
+  color: #d1d5db;
+  background: #0f1117;
 }
 
 .hero {
@@ -19,11 +19,26 @@ body {
 h1 {
   font-size: 46px;
   margin-bottom: 10px;
+  color: #f3f4f6;
+}
+
+h2 {
+  font-size: 28px;
+  color: #f3f4f6;
+  border-bottom: 1px solid #2d3139;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+  color: #e5e7eb;
 }
 
 .subtitle {
   font-size: 20px;
-  color: #555;
+  color: #9ca3af;
   max-width: 700px;
 }
 
@@ -32,9 +47,13 @@ h1 {
 }
 
 a {
-  color: #0057cc;
+  color: #60a5fa;
   text-decoration: none;
   font-weight: bold;
+}
+
+a:hover {
+  color: #93c5fd;
 }
 
 .links a {
@@ -47,28 +66,16 @@ section {
   margin-bottom: 55px;
 }
 
-h2 {
-  font-size: 28px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 8px;
-  margin-bottom: 20px;
-}
-
-h3 {
-  font-size: 22px;
-  margin-bottom: 8px;
-}
-
 .project {
-  background: white;
+  background: #1a1d27;
   padding: 22px;
-  border: 1px solid #ddd;
+  border: 1px solid #2d3139;
   border-radius: 12px;
   margin-bottom: 22px;
 }
 
 .tags {
-  color: #666;
+  color: #6b7280;
   font-size: 15px;
   margin-top: 12px;
 }
