@@ -40,9 +40,12 @@
         </div>
       </div>
       <p class="about-body">
-        I'm a CS master's student with a background spanning industrial engineering, aerospace quality,
-        and large-scale game development. A lot of experiences.. still looking for the meaning of it all.
+        I'm a CS master's student with a background in industrial engineering, aerospace quality,
+        and large-scale game development.
       </p>
+      <ul class="about-sub">
+        <li>As you can tell from my portfolio, I am a very colorful person.</li>
+      </ul>
 
       <h2 class="subsection-heading">Education</h2>
       <div class="edu-item">
@@ -88,7 +91,7 @@
       <h2>Experience</h2>
 
       <div class="accordion-item">
-        <button class="accordion-header" aria-expanded="false">
+        <button class="accordion-header" aria-expanded="true">
           <div class="accordion-title">
             <div>
               <span class="accordion-role">Quality Engineer</span>
@@ -137,7 +140,7 @@
       <h2>Projects</h2>
 
       <div class="accordion-item">
-        <button class="accordion-header" aria-expanded="false">
+        <button class="accordion-header" aria-expanded="true">
           <div class="accordion-title">
             <div>
               <span class="accordion-role">Tower Battles</span>
@@ -149,8 +152,7 @@
         </button>
         <div class="accordion-body">
           <div class="project-images">
-            <img src="TowerBattlesBanner1.png" alt="Tower Battles banner" class="project-img">
-            <img src="TowerBattlesHuntsmanBanner.png" alt="Tower Battles gameplay" class="project-img">
+            <img src="TowerBattlesHuntsmanBanner.png" alt="Tower Battles" class="project-img">
           </div>
           <p>
             Built and scaled a top-10 Roblox game with <strong>650M+ plays</strong> and <strong>$1.5M+ in net revenue</strong>.
@@ -182,7 +184,7 @@
 
     </section>
 
-    <p class="contact-note">Happy to give more details on any experiences or projects. My inbox is always open.</p>
+    <p class="contact-note">Happy to give more details on anything. My inbox is always open.</p>
 
     <hr class="section-divider">
 
@@ -284,7 +286,21 @@
     let noteSparks = [];
     let explosionParticles = [];
     let fireModeActive = false;
+    let noteHovered = false;
     const hiddenNote = document.getElementById('hidden-note');
+    hiddenNote.addEventListener('mouseenter', () => noteHovered = true);
+    hiddenNote.addEventListener('mouseleave', () => { noteHovered = false; noteSparks = []; });
+
+    // Intro hint 2 seconds after page load
+    setTimeout(() => {
+      hiddenNote.classList.add('note-intro');
+      noteHovered = true;
+      setTimeout(() => {
+        noteHovered = false;
+        noteSparks = [];
+        hiddenNote.classList.remove('note-intro');
+      }, 2000);
+    }, 2000);
 
     // Explosion particles
     const EXPLOSION_COLORS = [
@@ -451,11 +467,14 @@
     let fuseStart = null;
     let warned6 = false;
     let warned3 = false;
+    let warned2 = false;
     let warned1 = false;
 
     function startFuse() {
       warned6 = false;
+      warned5 = false;
       warned3 = false;
+      warned2 = false;
       warned1 = false;
       fuseWrap.style.display = 'block';
       fuseBar.style.transform = 'scaleX(1)';
@@ -466,18 +485,32 @@
         const remaining = FUSE_DURATION - elapsed;
         fuseBar.style.transform = `scaleX(${1 - progress})`;
 
-        if (!warned6 && remaining <= 6000) {
+        if (!warned6 && remaining <= 6500) {
           warned6 = true;
           fireLabel.textContent = 'WHY ARE YOU NOT DOING ANYTHING??';
+          fireLabel.style.fontSize = '30px';
+        }
+        if (!warned5 && remaining <= 5000) {
+          warned5 = true;
+          fireLabel.textContent = 'HOLY CRAP!!! TURN IT OFF!!!';
+          fireLabel.style.fontSize = '30px';
         }
         if (!warned3 && remaining <= 3000) {
           warned3 = true;
           fireLabel.textContent = 'OH MY GOD!!!';
+          fireLabel.style.fontSize = '30px';
+          fireLabel.classList.add('shaking');
+        }
+        if (!warned2 && remaining <= 2000) {
+          warned2 = true;
+          fireLabel.textContent = 'WERE ALL GUNNA DIE!!!';
+          fireLabel.style.fontSize = '35px';
         }
         if (!warned1 && remaining <= 1000) {
           warned1 = true;
           fireLabel.textContent = 'AHHHHHHHH!!!!!!!!!!';
-          fireLabel.style.fontSize = '22px';
+          fireLabel.style.fontSize = '45px';
+          fireLabel.classList.add('shaking-violent');
         }
 
         if (progress >= 1) {
@@ -494,11 +527,17 @@
           if (alarmTextTimeout) { clearTimeout(alarmTextTimeout); alarmTextTimeout = null; }
           fireLabel.textContent = 'x_x';
           fireLabel.style.fontSize = '';
-          fireLabel.classList.remove('flashing');
+          fireLabel.classList.remove('flashing', 'alarm-active', 'shaking', 'shaking-violent');
+          setTimeout(() => {
+            fireLabel.textContent = 'i need a job omg';
+          }, 5000);
+          setTimeout(() => {
+            fireLabel.textContent = '...';
+          }, 5500);
           setTimeout(() => {
             toggleInput.disabled = false;
             fireLabel.textContent = 'turn on the lights?';
-          }, 5000);
+          }, 6000);
           return;
         }
         fuseRafId = requestAnimationFrame(tick);
@@ -516,7 +555,7 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // subtle note sparks — always on
-      if (Math.random() < 0) {
+      if (noteHovered && Math.random() < 0.06) {
         const r = hiddenNote.getBoundingClientRect();
         noteSparks.push(new Spark({
           x: r.left + r.width / 2, y: r.top + r.height / 2,
@@ -562,6 +601,7 @@
       if (this.checked) {
         fireEverOn = true;
         fireLabel.textContent = 'Wait what?';
+        fireLabel.classList.add('alarm-active');
         fireLabel.classList.remove('flashing');
         alarmTextTimeout = setTimeout(() => {
           fireLabel.textContent = 'OH GOD WHAT HAVE YOU DONE?? TURN IT OFF! TURN IT OFF!!!';
@@ -575,13 +615,17 @@
         stopFuse();
         stopAlarm();
         fireLabel.style.fontSize = '';
+        fireLabel.classList.remove('flashing', 'alarm-active', 'shaking', 'shaking-violent');
         fireLabel.textContent = fireEverOn ? 'never do that again...' : 'a little dark in here, turn on the lights?';
-        fireLabel.classList.remove('flashing');
       }
     });
 
     // Accordion
     document.querySelectorAll('.accordion-header').forEach(btn => {
+      // initialise open state
+      if (btn.getAttribute('aria-expanded') === 'true') {
+        btn.nextElementSibling.style.height = btn.nextElementSibling.scrollHeight + 'px';
+      }
       btn.addEventListener('click', () => {
         const body = btn.nextElementSibling;
         const isOpen = btn.getAttribute('aria-expanded') === 'true';
