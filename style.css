@@ -13,15 +13,31 @@ body {
   background: #0f1117;
 }
 
+/* --- Spark canvas --- */
+
+#spark-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 101;
+}
+
 /* --- Hidden note --- */
 
 .hidden-note {
   font-size: 12px;
   color: rgba(180, 70, 10, 0.22);
-  text-align: center;
-  margin: 8px 0;
   font-style: italic;
   user-select: none;
+  margin-left: auto;
+  align-self: center;
+  white-space: nowrap;
+  text-decoration: none;
+  font-weight: normal;
+  cursor: pointer;
 }
 
 /* --- Nav --- */
@@ -166,8 +182,8 @@ a:hover {
 }
 
 .headshot-circle {
-  width: 165px;
-  height: 165px;
+  width: 227px;
+  height: 227px;
   border-radius: 25%;
   overflow: hidden;
   flex-shrink: 0;
@@ -450,7 +466,7 @@ footer p {
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  margin-bottom: 20px;
+  margin: -70px 0 20px;
 }
 
 .fire-toggle-label {
@@ -468,6 +484,25 @@ footer p {
   animation: alarm-flash 0.35s step-end infinite;
   font-weight: 700;
   font-style: normal;
+}
+
+.fuse-wrap {
+  display: none;
+  width: 220px;
+  height: 6px;
+  background: #1a1d27;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #3a2000;
+}
+
+.fuse-bar {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, #ffee00, #ff9500, #ff4500, #cc1500);
+  transform-origin: right center;
+  transform: scaleX(1);
+  border-radius: 4px;
 }
 
 .fire-switch {
@@ -503,6 +538,11 @@ footer p {
   background: #9ca3af;
   border-radius: 50%;
   transition: transform 0.3s, background 0.3s;
+}
+
+.fire-switch input:disabled + .fire-slider {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
 .fire-switch input:checked + .fire-slider {
