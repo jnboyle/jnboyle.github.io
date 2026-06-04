@@ -8,31 +8,27 @@
 </head>
 <body>
 
-  <header class="hero">
-    <h1>John Boyle</h1>
-    <p class="subtitle">MSCS student focused on data engineering, backend systems, and analytics.</p>
-
-    <div class="links">
-      <a href="resume.pdf" target="_blank">View Resume</a>
-      <a href="mailto:john.ng.boyle@gmail.com">Email Me</a>
-      <a href="https://www.linkedin.com/in/john-ng-boyle/" target="_blank">LinkedIn</a>
-      <a href="https://github.com/jnboyle" target="_blank">GitHub</a>
-    </div>
-  </header>
+  <nav class="tab-nav">
+    <a href="#home" class="tab active">Home</a>
+    <a href="#projects" class="tab">Projects</a>
+    <a href="#experience" class="tab">Experience</a>
+    <a href="#about" class="tab">About</a>
+  </nav>
 
   <main>
 
-    <section>
-      <h2>About</h2>
-      <p>
-        I am a computer science master's student with a background in industrial engineering,
-        quality engineering, and large-scale game development. I created Tower Battles, a Roblox
-        game with 650M+ plays, and I am currently focused on data engineering, backend systems,
-        and analytics roles.
-      </p>
+    <section id="home" class="hero">
+      <h1>John Boyle</h1>
+      <p class="subtitle">MSCS student focused on data engineering, backend systems, and analytics.</p>
+      <div class="links">
+        <a href="resume.pdf" target="_blank">View Resume</a>
+        <a href="mailto:john.ng.boyle@gmail.com">Email Me</a>
+        <a href="https://www.linkedin.com/in/john-ng-boyle/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/jnboyle" target="_blank">GitHub</a>
+      </div>
     </section>
 
-    <section>
+    <section id="projects">
       <h2>Projects</h2>
 
       <div class="project">
@@ -63,11 +59,10 @@
         </p>
         <p class="tags">Python, Excel, operations analytics, quality engineering, AS9100</p>
       </div>
-
     </section>
 
-    <section>
-      <h2>Experience Highlights</h2>
+    <section id="experience">
+      <h2>Experience</h2>
       <ul>
         <li>Created Tower Battles, a Roblox game with 650M+ plays.</li>
         <li>Built backend game systems, player progression logic, and live product updates.</li>
@@ -77,14 +72,47 @@
       </ul>
     </section>
 
-    <section>
-      <h2>Contact</h2>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        I am a computer science master's student with a background in industrial engineering,
+        quality engineering, and large-scale game development. I created Tower Battles, a Roblox
+        game with 650M+ plays, and I am currently focused on data engineering, backend systems,
+        and analytics roles.
+      </p>
+
+      <h2 style="margin-top: 40px;">Contact</h2>
       <p>Email: <a href="mailto:john.ng.boyle@gmail.com">john.ng.boyle@gmail.com</a></p>
       <p>LinkedIn: <a href="https://www.linkedin.com/in/john-ng-boyle/" target="_blank">View my LinkedIn</a></p>
       <p>GitHub: <a href="https://github.com/jnboyle" target="_blank">View my GitHub</a></p>
     </section>
 
   </main>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const sections = document.querySelectorAll('main section');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tabs.forEach(tab => tab.classList.remove('active'));
+          const active = document.querySelector(`.tab[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(tab.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
 
 </body>
 </html>

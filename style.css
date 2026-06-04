@@ -1,19 +1,61 @@
 * {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: Arial, sans-serif;
   max-width: 900px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 0 20px 60px;
   line-height: 1.6;
   color: #d1d5db;
   background: #0f1117;
 }
 
-.hero {
+/* --- Nav --- */
+
+.tab-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #0f1117;
+  border-bottom: 1px solid #2d3139;
+  display: flex;
+  gap: 4px;
+  padding: 12px 0;
   margin-bottom: 60px;
+}
+
+.tab {
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #9ca3af;
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s;
+}
+
+.tab:hover {
+  color: #e5e7eb;
+  background: #1a1d27;
+}
+
+.tab.active {
+  color: #f3f4f6;
+  background: #1a1d27;
+}
+
+/* --- Sections --- */
+
+section {
+  margin-bottom: 100px;
+  scroll-margin-top: 70px;
+}
+
+.hero {
+  padding-top: 60px;
 }
 
 h1 {
@@ -42,6 +84,8 @@ h3 {
   max-width: 700px;
 }
 
+/* --- Links --- */
+
 .links {
   margin-top: 25px;
 }
@@ -62,9 +106,7 @@ a:hover {
   margin-bottom: 10px;
 }
 
-section {
-  margin-bottom: 55px;
-}
+/* --- Projects --- */
 
 .project {
   background: #1a1d27;
@@ -79,6 +121,8 @@ section {
   font-size: 15px;
   margin-top: 12px;
 }
+
+/* --- Lists --- */
 
 ul {
   padding-left: 22px;
