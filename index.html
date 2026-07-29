@@ -93,7 +93,7 @@
         <button class="accordion-header" aria-expanded="true">
           <div class="accordion-title">
             <div>
-              <span class="accordion-role">Quality Engineer</span>
+              <span class="accordion-role"><span class="ei">✈️</span> Quality Engineer</span>
               <span class="accordion-org">Astronics — Kirkland, WA</span>
             </div>
             <span class="accordion-date">Apr 2022 – Aug 2024</span>
@@ -115,7 +115,7 @@
         <button class="accordion-header" aria-expanded="false">
           <div class="accordion-title">
             <div>
-              <span class="accordion-role">Researcher</span>
+              <span class="accordion-role"><span class="ei">🔬</span> Researcher</span>
               <span class="accordion-org">University of Washington NEST Program — Seattle, WA</span>
             </div>
             <span class="accordion-date">Dec 2020 – Jul 2021</span>
@@ -142,7 +142,7 @@
         <button class="accordion-header" aria-expanded="false">
           <div class="accordion-title">
             <div>
-              <span class="accordion-role">Tower Battles</span>
+              <span class="accordion-role"><span class="ei">🎮</span> Tower Battles</span>
               <span class="accordion-org">Roblox · Jun 2017 – Present</span>
             </div>
             <span class="accordion-date">650M+ plays · $1.5M revenue</span>
@@ -166,18 +166,21 @@
         <button class="accordion-header" aria-expanded="false">
           <div class="accordion-title">
             <div>
-              <span class="accordion-role">Lindr — Clinical Trial Matching Agent</span>
-              <span class="accordion-org">BioHack 2026 · Nucleate NYC · <a href="https://lindr.live" target="_blank">lindr.live</a></span>
+              <span class="accordion-role"><span class="ei">🧬</span> Lindr — Clinical Trial Matching Agent</span>
+              <span class="accordion-org">BioHack 2026 · Nucleate NYC</span>
             </div>
           </div>
           <span class="accordion-chevron">&#8964;</span>
         </button>
         <div class="accordion-body">
+          <p style="margin: 4px 24px 14px; font-size: 15px; color: #9ca3af;">
+            An AI agent that matches patients to qualifying clinical trials at the point of care. Most eligible patients never learn about trials they qualify for because the matching is still done manually. <a href="https://www.lindr.live" target="_blank">Try it here.</a>
+          </p>
           <ul>
-            <li>Architected a zero-PHI data model where patient data is de-identified at point of entry — a key constraint in clinical data workflows.</li>
-            <li>Sole engineer on the full stack: API integration, eligibility criteria parsing, LLM-based matching via the Claude API, and front-end demo via Streamlit.</li>
-            <li>Built a dual human-in-the-loop validation layer — physician review gates output before it reaches the patient, maintaining auditability at each handoff.</li>
-            <li>Delivered a functional end-to-end system within a single-day build window as the only technical contributor on the team.</li>
+            <li>Ingests live trial data from ClinicalTrials.gov and uses an LLM to parse dense inclusion/exclusion criteria in seconds, against the patient's EHR data and physician notes.</li>
+            <li>Surfaces ranked matches with confidence scores; a physician review step ensures no result reaches a patient without a doctor signing off.</li>
+            <li>Built the full stack solo: data ingestion pipeline, eligibility matching engine, and a working Streamlit demo, in one day at BioHack 2026.</li>
+            <li>Currently focused on oncology with a roadmap into neurology and rare disease.</li>
           </ul>
           <p class="tags">Python · Claude API · ClinicalTrials.gov API · Streamlit · LLM · data pipeline</p>
         </div>

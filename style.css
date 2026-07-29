@@ -348,6 +348,13 @@ a:hover {
   color: #9ca3af;
 }
 
+/* --- Emoji icons --- */
+
+.ei {
+  filter: grayscale(0%);
+  opacity: 0.8;
+}
+
 /* --- Accordion --- */
 
 .accordion-item {
